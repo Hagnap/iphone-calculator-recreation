@@ -37,6 +37,7 @@ button {
     text-align: right;
     margin: 64px 8px;
     margin-bottom: 0px;
+    padding-right: 8px;
 }
 
 .grid {
