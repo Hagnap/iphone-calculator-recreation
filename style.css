@@ -49,11 +49,51 @@ button {
 .row3,
 .row4,
 .row5 {
+    padding: 0;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.number,
+.operator {
+    margin: 2px;
+}
+
+.number {
+    border: 0px solid rgb(39, 39, 39);
+    background-color: rgb(39, 39, 39);
+    color: white;
+}
+
+#decimal {
+    border: 0px solid rgb(39, 39, 39);
+    background-color: rgb(39, 39, 39);
+    color: white;
+}
+
+#add,
+#subtract,
+#multiply,
+#divide,
+#equal {
+    border: 0px solid rgb(214, 166, 8);
+    background-color: rgb(214, 166, 8);
+    color: white;
+}
+
+#clear, 
+#toggle-negative,
+#modulus {
+    border: 0px solid rgb(185, 185, 185);
+    background-color: rgb(185, 185, 185);
+    color: black;
 }
 
 #zero {
     flex: 2;
+    height: 48px;
+    width: 96px;
+    padding-right: 24px;
 }
