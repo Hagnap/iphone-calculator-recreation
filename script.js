@@ -48,11 +48,20 @@ equalBtn.addEventListener("click", () => {
     console.log("=");
 });
 
+const clearBtn = document.querySelector("#clear");
+clearBtn.addEventListener("click", () => {
+    clear();
+})
+
 // Input Functions
 function updateUserInput(value){
     //if(value == "0") { userInput = value; }
     userInput = userInput == "0" ? value : userInput += value;
-    
+    document.querySelector("#output-text").textContent = userInput;
+}
+
+function clear() {
+    userInput = "0";
     document.querySelector("#output-text").textContent = userInput;
 }
 
