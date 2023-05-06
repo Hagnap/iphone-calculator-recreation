@@ -37,6 +37,12 @@ function modulus(a,b) {
     return a%b;
 }
 
+function toggleNegative() {
+
+    userInput *= -1;
+    document.querySelector("#output-text").textContent = userInput;
+}
+
 function clear() {
     userInput = "0";
     document.querySelector("#output-text").textContent = userInput;
@@ -119,6 +125,11 @@ decimalBtn.addEventListener("click", () => {
 const clearBtn = document.querySelector("#clear");
 clearBtn.addEventListener("click", () => {
     clear();
+})
+
+const negativeToggleBtn = document.querySelector("#toggle-negative");
+negativeToggleBtn.addEventListener("click", () => {
+    toggleNegative();
 })
 
 const equalBtn = document.querySelector("#equal");
