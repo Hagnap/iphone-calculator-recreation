@@ -9,41 +9,53 @@ function modulus(a,b) { return a%b; }
 const numberBtns = document.querySelectorAll(".number");
 numberBtns.forEach((button) => {
     button.addEventListener("click", () => {
-        console.log(button.textContent);
+        updateUserInput(button.textContent);
     })
 });
 
 const addBtn = document.querySelector("#add");
 addBtn.addEventListener("click", () => {
-    console.log("+");
+    updateUserInput("+");
 });
 
 const subtractBtn = document.querySelector("#subtract");
 subtractBtn.addEventListener("click", () => {
-    console.log("-");
+    updateUserInput("-");
 });
 
 const multiplyBtn = document.querySelector("#multiply");
 multiplyBtn.addEventListener("click", () => {
-    console.log("*");
+    updateUserInput("*");
 });
 
 const divideBtn = document.querySelector("#divide");
 divideBtn.addEventListener("click", () => {
-    console.log("/");
+    updateUserInput("/");
 });
 
 const modulusBtn = document.querySelector("#modulus");
 modulusBtn.addEventListener("click", () => {
-    console.log("%");
+    updateUserInput("%");
 });
 
 const decimalBtn = document.querySelector("#decimal");
 decimalBtn.addEventListener("click", () => {
-    console.log(".");
+    updateUserInput(".");
 });
 
 const equalBtn = document.querySelector("#equal");
 equalBtn.addEventListener("click", () => {
     console.log("=");
 });
+
+// Input Functions
+function updateUserInput(value){
+    //if(value == "0") { userInput = value; }
+    userInput = userInput == "0" ? value : userInput += value;
+    
+    document.querySelector("#output-text").textContent = userInput;
+}
+
+// Global variable --- Starting dummy value
+let userInput = "0";
+document.querySelector("#output-text").textContent = userInput;
