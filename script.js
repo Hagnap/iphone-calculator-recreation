@@ -39,7 +39,8 @@ function modulus(a,b) {
 
 function toggleNegative() {
 
-    let temp = userInput; //String(userInput);
+    var temp = userInput; //String(userInput);
+
     // If negative -> remove -
     if(temp.charAt(0) === '-') {
         
@@ -151,12 +152,22 @@ negativeToggleBtn.addEventListener("click", () => {
 const equalBtn = document.querySelector("#equal");
 equalBtn.addEventListener("click", () => {
     
+    var processedInput = processInput(userInput);
+    userInput = operate(processedInput[0], processedInput[1], processedInput[2]);
+    
+    
+    document.querySelector("#output-text").textContent = userInput;
+
+});
+
+// Input Function
+function processInput() {
     // RegEx = https://masteringjs.io/tutorials/fundamentals/split-on-multiple-characters
     let result = userInput.split(/[%*/+-]+/);
 
-    let operator = "";
-    let a = "";
-    let b = "";
+    var operator = "";
+    var a = "";
+    var b = "";
 
     if(userInput[0] === "-") {
         operator = userInput[result[1].length+1];
@@ -170,18 +181,50 @@ equalBtn.addEventListener("click", () => {
         a = Number(result[0]);
         b = Number(result[1]);
     }
+    return [operator, a, b];
+}
 
-    userInput = operate(operator, a, b);
+function checkInput() {
+
+    /*
+        Goal check if there are 1+ operators present in the string.
+        If so, perform the first operation and then use the second operator 
+        for the next operation.
+    */
+
+    // Check for negative sign, if it exist then remove it
+    var negativeFlag = userInput.charAt(0) === '-';
+    var temp = userInput.charAt(0) === '-' ? userInput.slice(1, userInput.length) : userInput;
+    var split = temp.split(/[%*/+-]/);
+
+    // Check for 1 or 1+ operators. Two operators exist -> Perform 1 operation with 1st operator & store 1nd operator
+    if(split.length > 2) {
+
+        // Remove second operator
+        temp = temp.slice(0, temp.length - 1);
+
+        if(negativeFlag) {
+            temp = '-' + temp;
+        }
     
-    document.querySelector("#output-text").textContent = userInput;
+        
+    
+        var processedInput = processInput(temp);
+        var result = operate(processedInput[0], processedInput[1], processedInput[2]);
+    
+        console.log("temp: " + temp);
+        console.log("result: " + result);
+        
+        userInput = String(result) + userInput.charAt(userInput.length-1);
+        
+    }
 
-});
 
-// Input Function
+}
+
 function updateUserInput(value){
-    //if(value == "0") { userInput = value; }
-    //userInput = userInput == "0" ? value : userInput += value;
 
+    
     switch(userInput) {
         case "0":
             userInput = value;
@@ -193,7 +236,7 @@ function updateUserInput(value){
             userInput += value;
     }
     
-    //checkInput();
+    checkInput();
 
     document.querySelector("#output-text").textContent = userInput;
 }
