@@ -50,7 +50,7 @@ function clear() {
 
 function operate(operator, a, b) {
     if(a === "" || b == "") {
-        return "ERROR: MAKE SURE USER INPUT IS VALID!";
+        return "ERROR";
     }
     
     switch(operator){
@@ -69,7 +69,7 @@ function operate(operator, a, b) {
         case "/":
 
             if(b === 0) {
-                return "ERROR: CANT NOT DIVIDE BY ZERO!";
+                return "ERROR";
             }
             else{
                 return divide(a,b);
