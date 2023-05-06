@@ -39,7 +39,23 @@ function modulus(a,b) {
 
 function toggleNegative() {
 
-    userInput *= -1;
+    let temp = userInput; //String(userInput);
+    // If negative -> remove -
+    if(temp.charAt(0) === '-') {
+        
+        temp = temp.slice(1, temp.length);
+    }
+
+    //Check for operators, if they exist return Error
+    if(temp.includes("+") || temp.includes("-") || temp.includes("*") || temp.includes("/") || temp.includes("%"))
+    {
+        userInput = "Error";
+    }
+    else {
+        userInput *= -1;
+    }
+
+    
     document.querySelector("#output-text").textContent = userInput;
 }
 
@@ -164,7 +180,18 @@ equalBtn.addEventListener("click", () => {
 // Input Function
 function updateUserInput(value){
     //if(value == "0") { userInput = value; }
-    userInput = userInput == "0" ? value : userInput += value;
+    //userInput = userInput == "0" ? value : userInput += value;
+
+    switch(userInput) {
+        case "0":
+            userInput = value;
+            break;
+        case "Error":
+            userInput = value;
+            break;
+        default:
+            userInput += value;
+    }
     
     //checkInput();
 
