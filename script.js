@@ -136,7 +136,7 @@ const equalBtn = document.querySelector("#equal");
 equalBtn.addEventListener("click", () => {
     
     // RegEx = https://masteringjs.io/tutorials/fundamentals/split-on-multiple-characters
-    let result = userInput.split(/[*/+-]+/);
+    let result = userInput.split(/[%*/+-]+/);
 
     let operator = "";
     let a = "";
