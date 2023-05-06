@@ -1,9 +1,41 @@
 // CALCULATOR FUNCTIONS 
-function add(a,b) { return a+b; }
-function subtract(a,b) { return a-b; }
-function multiply(a,b) { return a*b; }
-function divide(a,b) { return a/b; }
-function modulus(a,b) { return a%b; }
+// ref for rounding https://www.peterlunch.com/snippets/javascript-round
+// Round to 5 decimals -> 100000
+function add(a,b) { 
+    if(Number.isInteger(a+b)){
+        return a+b;
+    }
+    else {
+        return Math.round((a+b) * 100000) / 100000;
+    }
+}
+function subtract(a,b) { 
+    if(Number.isInteger(a-b)){
+        return a-b;
+    }
+    else {
+        return Math.round((a-b) * 100000) / 100000;
+    }
+}
+function multiply(a,b) {
+    if(Number.isInteger(a*b)){
+        return a*b;
+    }
+    else {
+        return Math.round((a*b) * 100000) / 100000;
+    }
+}
+function divide(a,b) {
+    if(Number.isInteger(a/b)){
+        return a/b;
+    }
+    else {
+        return Math.round((a/b) * 100000) / 100000;
+    }
+}
+function modulus(a,b) {
+    return a%b;
+}
 
 function clear() {
     userInput = "0";
