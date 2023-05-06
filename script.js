@@ -165,6 +165,9 @@ equalBtn.addEventListener("click", () => {
 function updateUserInput(value){
     //if(value == "0") { userInput = value; }
     userInput = userInput == "0" ? value : userInput += value;
+    
+    //checkInput();
+
     document.querySelector("#output-text").textContent = userInput;
 }
 
