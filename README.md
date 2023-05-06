@@ -33,3 +33,4 @@ https://jhagg26.github.io/odin-calculator/index.html
   * ex: `3+3+3` will result in 6 instead of 9
   
 * Returns `Not a Number` / `NaN` when user tries to user `+/-` on 1+ characters in the user input. Need to add/return an error message for this
+ * `+/-` applied on `3+1` will return `NaN`
