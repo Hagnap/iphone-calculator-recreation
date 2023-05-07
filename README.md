@@ -30,4 +30,4 @@ https://jhagg26.github.io/odin-calculator/index.html
 
 ## Known Issues
 * Has issues when the second number used is a negative number
-  * ex: 1 - -1 will result in 0 instead of 2
+  * ex: 1 - -1 will result in an error
