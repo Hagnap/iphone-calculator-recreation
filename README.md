@@ -26,7 +26,11 @@ https://jhagg26.github.io/odin-calculator/index.html
 
 * JavaScript
 
+## Challenges Faced
+* Parsing the input to be calculated
+  * When doing this task I was warned about the dangers of `.eval()` and how people can pass code into it that JS will execute. So I had to think of ways to parse the string, break it down, and extract the neccesary parts to make an accurate calculation.
 
+* Dealing with multiple decimal places
 
 ## Known Issues
 * Has issues when the second number used is a negative number
