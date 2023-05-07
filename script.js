@@ -154,7 +154,7 @@ equalBtn.addEventListener("click", () => {
     
     var processedInput = processInput(userInput);
 
-    if(processedInput === "ERROR") {
+    if(processedInput == "ERROR") {
         userInput = "ERROR";
     }
     else {
@@ -169,7 +169,7 @@ equalBtn.addEventListener("click", () => {
 // Input Function
 function processInput() {
     // RegEx = https://masteringjs.io/tutorials/fundamentals/split-on-multiple-characters
-    let result = userInput.split(/[%*/+-]+/);
+    var result = userInput.split(/[%*/+-]+/);
 
     var operator = "";
     var a = "";
@@ -177,23 +177,66 @@ function processInput() {
 
     if(userInput[0] === "-") {
         operator = userInput[result[1].length+1];
-        a = Number(result[1]);
+        a = result[1]
+        b = result[2]
+
+        // Check if a or b have 1+ decimals
+        var aCount = 0;
+        for (var i = 0; i < a.length; i++) {
+            if (a[i] === '.') {
+                aCount++;
+            }
+        }
+
+        var bCount = 0;
+        for (var i = 0; i < b.length; i++) {
+            if (b[i] === '.') {
+                bCount++;
+            }
+        }
+
+        if(aCount > 1 || bCount > 1) {
+            return "ERROR";
+        }
+
+        a = Number(a);
         a *= -1;
-        b = Number(result[2]);
+        b = Number(b);
+
+        return [operator, a, b];
     }
 
     else {
         operator = userInput[result[0].length];
-        a = Number(result[0]);
-        b = Number(result[1]);
-    }
 
-    // Check if a or b have multiple decimals
-    if(String(a).split(/(.)/g).length > 1 || String(b).split(/(.)/g).length > 1) {
-        return "ERROR";
-    }
+        a = result[0];
+        b = result[1];
 
-    return [operator, a, b];
+        // Check if a or b have 1+ decimals
+        var aCount = 0;
+        for (var i = 0; i < a.length; i++) {
+            if (a[i] === '.') {
+                aCount++;
+            }
+        }
+
+        var bCount = 0;
+        for (var i = 0; i < b.length; i++) {
+            if (b[i] === '.') {
+                bCount++;
+            }
+        }
+
+        if(aCount > 1 || bCount > 1) {
+            return "ERROR";
+        }
+
+
+        a = Number(a);
+        b = Number(b);
+
+        return [operator, a, b];
+    }
 }
 
 function checkInput() {
