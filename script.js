@@ -39,7 +39,7 @@ function modulus(a,b) {
 
 function toggleNegative() {
 
-    var temp = userInput; //String(userInput);
+    var temp = String(userInput); //String(userInput);
 
     // If negative -> remove -
     if(temp.charAt(0) === '-') {
@@ -50,7 +50,7 @@ function toggleNegative() {
     //Check for operators, if they exist return Error
     if(temp.includes("+") || temp.includes("-") || temp.includes("*") || temp.includes("/") || temp.includes("%"))
     {
-        userInput = "Error";
+        userInput = "ERROR";
     }
     else {
         userInput *= -1;
@@ -212,15 +212,9 @@ function checkInput() {
     
         console.log("temp: " + temp);
         console.log("result: " + result);
-
         
         userInput = result === "ERROR" ? "ERROR" : String(result) + userInput.charAt(userInput.length-1);
-
-        //userInput = String(result) + userInput.charAt(userInput.length-1);
-        
     }
-
-
 }
 
 function updateUserInput(value){
