@@ -206,16 +206,17 @@ function checkInput() {
         if(negativeFlag) {
             temp = '-' + temp;
         }
-    
-        
-    
+
         var processedInput = processInput(temp);
         var result = operate(processedInput[0], processedInput[1], processedInput[2]);
     
         console.log("temp: " + temp);
         console.log("result: " + result);
+
         
-        userInput = String(result) + userInput.charAt(userInput.length-1);
+        userInput = result === "ERROR" ? "ERROR" : String(result) + userInput.charAt(userInput.length-1);
+
+        //userInput = String(result) + userInput.charAt(userInput.length-1);
         
     }
 
@@ -229,7 +230,7 @@ function updateUserInput(value){
         case "0":
             userInput = value;
             break;
-        case "Error":
+        case "ERROR":
             userInput = value;
             break;
         default:
