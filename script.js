@@ -153,7 +153,13 @@ const equalBtn = document.querySelector("#equal");
 equalBtn.addEventListener("click", () => {
     
     var processedInput = processInput(userInput);
-    userInput = operate(processedInput[0], processedInput[1], processedInput[2]);
+
+    if(processedInput === "ERROR") {
+        userInput = "ERROR";
+    }
+    else {
+        userInput = operate(processedInput[0], processedInput[1], processedInput[2]);
+    }
     
     
     document.querySelector("#output-text").textContent = userInput;
@@ -181,6 +187,12 @@ function processInput() {
         a = Number(result[0]);
         b = Number(result[1]);
     }
+
+    // Check if a or b have multiple decimals
+    if(String(a).split(/(.)/g).length > 1 || String(b).split(/(.)/g).length > 1) {
+        return "ERROR";
+    }
+
     return [operator, a, b];
 }
 
@@ -191,6 +203,8 @@ function checkInput() {
         If so, perform the first operation and then use the second operator 
         for the next operation.
     */
+
+    console.log(userInput.split(/([%*/+-])/g));
 
     // Check for negative sign, if it exist then remove it
     var negativeFlag = userInput.charAt(0) === '-';
@@ -203,6 +217,7 @@ function checkInput() {
         // Remove second operator
         temp = temp.slice(0, temp.length - 1);
 
+        // Add negative sign that was previously removed
         if(negativeFlag) {
             temp = '-' + temp;
         }
