@@ -43,10 +43,19 @@ function toggleNegative() {
 function clear() {
     userInput = '';
     displayValue = '';
+
+    document.querySelector("#output-text").textContent = displayValue;
 }
 
 function operate(operator, a, b) {
+
+    console.log("In operate()");
+    console.log("a: " + a)
+    console.log("Operator: " + operator)
+    console.log("b: " + b)
     
+    console.log();
+
 }
 
 // INPUT FUNCTIONS
@@ -59,21 +68,46 @@ function resetButtonColors() {
 }
 function updateUserInput(value) {
     
-    // If value is an operator -> Check if another operator is already present. If so perform the calculation, 
+    var a = '';
+    var b = '';
+    var operator = '';
 
-    // Update input
-    userInput += value;
-    console.log(userInput);
+    // Store user input + value if value is not an equal sign
+    var temp = value === '=' ? userInput : userInput + value; 
+    var expressionSlit = temp.split(/([%*/+-]+)/g)
+
+    // If value is an operator -> Check if another operator is already present. If so perform the calculation, otherwise update userInput
+    console.table(expressionSlit);
+    if(expressionSlit.length > 3) {
+        console.log("ERROR: Too many operators");
+    }
+
+    // If value is an equal sign perform operation
+    else if(value === '=') {
+
+        a = expressionSlit[0];
+        operator = expressionSlit[1];
+        b = expressionSlit[2];
+
+        operate(operator, a, b);
+    }
+
+    // Otherwise...
+    else {
+        // Update input
+        userInput += value;
+        console.log(userInput);
+    }
+
 } 
 
 function updateDisplayValue(value) {
     
     // If value is NOT an operator or 0 -> Update display value 
-    
-    if(!(value === "+" || value === "-" || value === "*" || value === "/" || value === "%")) {
+    if(!(value === '+' || value === '-'|| value === '*' || value === '/' || value === '%')) {
 
         // If displayValue is 0 -> Overwrite it with value
-        if(displayValue === "0") {
+        if(displayValue === '0') {
             displayValue = value;
         }
 
@@ -82,6 +116,11 @@ function updateDisplayValue(value) {
             displayValue += value;
         }
         
+    }
+
+    // If an operator is pressed -> Now display a zero
+    else {
+        displayValue = '0';
     }
    
     document.querySelector("#output-text").textContent = displayValue;
@@ -113,8 +152,8 @@ subtractBtn.addEventListener("click", () => {
 
 const multiplyBtn = document.querySelector("#multiply");
 multiplyBtn.addEventListener("click", () => {
-    updateUserInput(multiplyBtn.textContent);
-    updateDisplayValue(multiplyBtn.textContent);
+    updateUserInput('*');
+    updateDisplayValue('*');
     multiplyBtn.style = "background-color: rgba(214, 166, 8, 0.75)";
 });
 
@@ -154,7 +193,8 @@ negativeToggleBtn.addEventListener("click", () => {
 const equalBtn = document.querySelector("#equal");
 equalBtn.addEventListener("click", () => {
     
-    operate();
+    console.log(equalBtn.textContent);
+    updateUserInput(equalBtn.textContent);
     resetButtonColors();
 });
 
