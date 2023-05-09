@@ -176,9 +176,12 @@ function updateUserInput(value) {
     var temp = value === '=' ? userInput : userInput + value; 
     var expressionSplit = temp.split(/([%*/+-]+)/g);
 
-    // Check if ERROR is displayed, make it blank (will be overwritten later in this function)
+    // Check if ERROR is displayed, make it blank (will be overwritten later in this function) & Reset values
     if(displayValue === "ERROR") {
         displayValue = '';
+        userInput = '';
+        aIsNegative = false;
+        bIsNegative = false;
     }
 
     // If value is an operator -> Check if another operator is already present. If so perform the calculation, otherwise update userInput
