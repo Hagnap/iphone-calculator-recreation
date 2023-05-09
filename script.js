@@ -175,10 +175,19 @@ function updateUserInput(value) {
     var temp = value === '=' ? userInput : userInput + value; 
     var expressionSplit = temp.split(/([%*/+-]+)/g)
 
+        // Check if ERROR is displayed, make it blank (will be overwritten later in this function) & Reset values
+        if(displayValue === "ERROR") {
+            displayValue = '';
+            userInput = '';
+            aIsNegative = false;
+            bIsNegative = false;
+            afterAnOperation = false;
+        }
+
     // If value is an operator -> Check if another operator is already present. If so perform the calculation, otherwise update userInput
     console.table(expressionSplit);
     if(expressionSplit.length > 3) {
-        console.log("ERROR: Too many operators.");
+        //console.log("ERROR: Too many operators.");
 
         a = Number(expressionSplit[0]);
         operator = expressionSplit[1];
@@ -202,11 +211,13 @@ function updateUserInput(value) {
     
     else if(((expressionSplit[0] === '' || (expressionSplit[0] != ''  && expressionSplit[2] === '')) && value === '=')) {
         console.log("ERROR: Undefined Operand(s).");
+        displayValue = "ERROR";
     }
 
     // ExpressionSplit is 1 element -> Only one operand was inputted (no operator + second operand)
    else if(expressionSplit.length === 1 && value === '=') {
         console.log("ERROR: Undefined Operator.");
+        displayValue = "ERROR";
     }
     
 
@@ -221,6 +232,7 @@ function updateUserInput(value) {
         // Check for deciamls (do this while value is a string, easy to traverse)
         if(checkDecimalCount(a) > 1 || checkDecimalCount(b) > 1) {
             console.log("Error: Too many decimals in an operand.");
+            displayValue = "ERROR";
         } 
 
         else {
@@ -231,9 +243,9 @@ function updateUserInput(value) {
     
             displayValue = operate(operator, a, b);
             console.log(displayValue);
-            document.querySelector("#output-text").textContent = displayValue;
         }
 
+        
     }
 
     // Otherwise...
@@ -243,6 +255,7 @@ function updateUserInput(value) {
         console.log(userInput);
     }
 
+    document.querySelector("#output-text").textContent = displayValue;
 } 
 
 function updateDisplayValue(value) {
