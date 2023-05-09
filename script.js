@@ -61,8 +61,6 @@ function toggleNegative() {
             displayValue = "-" + displayValue;
             document.querySelector("#output-text").textContent = displayValue;
         }
-        
-
     }
 
     if(temp.length == 3 && temp[2] != '') {
@@ -167,6 +165,8 @@ function updateUserInput(value) {
     var a = '';
     var b = '';
     var operator = '';
+    //var extraOperator = '';
+    var result = '';
 
     // Store user input + value if value is not an equal sign
     var temp = value === '=' ? userInput : userInput + value; 
@@ -176,6 +176,15 @@ function updateUserInput(value) {
     console.table(expressionSplit);
     if(expressionSplit.length > 3) {
         console.log("ERROR: Too many operators.");
+
+        a = Number(expressionSplit[0]);
+        operator = expressionSplit[1];
+        b = Number(expressionSplit[2]);
+
+        result = String(operate(operator, a, b));
+
+        displayValue = '';
+        userInput = result + expressionSplit[3]
     }
 
     
