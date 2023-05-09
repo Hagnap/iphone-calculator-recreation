@@ -111,7 +111,10 @@ function operate(operator, a, b) {
         }
         */
     
+    afterAnOperation = true;
+    
     switch(operator){
+        
         case "+":
             return add(a,b);
             break;
@@ -182,6 +185,7 @@ function updateUserInput(value) {
         userInput = '';
         aIsNegative = false;
         bIsNegative = false;
+        afterAnOperation = false;
     }
 
     // If value is an operator -> Check if another operator is already present. If so perform the calculation, otherwise update userInput
@@ -253,10 +257,11 @@ function updateUserInput(value) {
         
     }
 
-    // Otherwise...
+    // Otherwise update input
     else {
-        // Update input
-        userInput += value;
+        
+        userInput = afterAnOperation ? value : userInput + value;
+       
         console.log(userInput);
     }
 
@@ -273,9 +278,16 @@ function updateDisplayValue(value) {
             displayValue = value;
         }
 
-        // Otherwise concat/add value
+        // Otherwise concat/add value or overwrite it
         else {
+
+            if (afterAnOperation) {
+                displayValue = value;
+                afterAnOperation = false;
+            }
+            else {
             displayValue += value;
+            }
         }
         
     }
@@ -292,6 +304,7 @@ function updateDisplayValue(value) {
 const numberBtns = document.querySelectorAll(".number");
 numberBtns.forEach((button) => {
     button.addEventListener("click", () => {
+
         updateUserInput(button.textContent);
         updateDisplayValue(button.textContent);
         resetButtonColors();
@@ -367,5 +380,6 @@ equalBtn.addEventListener("click", () => {
 let userInput = '';
 let aIsNegative = false;
 let bIsNegative = false;
+let afterAnOperation = false;
 let displayValue = '0';
 document.querySelector("#output-text").textContent = displayValue;
