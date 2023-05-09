@@ -48,17 +48,36 @@ function toggleNegative() {
 
     // If one char long then make a negative
     if(temp.length == 1) {
-        aIsNegative = true;
 
-        displayValue = "-" + displayValue;
-        document.querySelector("#output-text").textContent = displayValue;
+        if(aIsNegative === true) {
+            aIsNegative = false;
+
+            displayValue = displayValue.slice(1, displayValue.length);
+            document.querySelector("#output-text").textContent = displayValue;
+        }
+        else {
+            aIsNegative = true;
+
+            displayValue = "-" + displayValue;
+            document.querySelector("#output-text").textContent = displayValue;
+        }
+        
+
     }
 
     if(temp.length == 3 && temp[2] != '') {
-        bIsNegative = true;
+        if(bIsNegative) {
+            bIsNegative = false;
 
-        displayValue = "-" + displayValue;
-        document.querySelector("#output-text").textContent = displayValue;
+            displayValue = displayValue.slice(1, displayValue.length);
+            document.querySelector("#output-text").textContent = displayValue;
+        }
+        else {
+            bIsNegative = true;
+
+            displayValue = "-" + displayValue;
+            document.querySelector("#output-text").textContent = displayValue;
+        }
     }
 
 }
