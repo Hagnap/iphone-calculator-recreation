@@ -180,9 +180,22 @@ function updateUserInput(value) {
         afterAnOperation = false;
     }
 
+        // Check if ERROR is displayed, make it blank (will be overwritten later in this function) & Reset values
+        if(displayValue === "ERROR") {
+            displayValue = '';
+            userInput = '';
+            aIsNegative = false;
+            bIsNegative = false;
+            afterAnOperation = false;
+        }
+
     // If value is an operator -> Check if another operator is already present. If so perform the calculation, otherwise update userInput
     console.table(expressionSplit);
     if(expressionSplit.length > 3) {
+<<<<<<< HEAD
+=======
+        //console.log("ERROR: Too many operators.");
+>>>>>>> new-branch-to-fix-bugs
 
         a = Number(expressionSplit[0]);
         operator = expressionSplit[1];
@@ -227,7 +240,11 @@ function updateUserInput(value) {
 
         // Check for deciamls (do this while value is a string, easy to traverse)
         if(checkDecimalCount(a) > 1 || checkDecimalCount(b) > 1) {
+<<<<<<< HEAD
             console.log("ERROR: Too many decimals in an operand.");
+=======
+            console.log("Error: Too many decimals in an operand.");
+>>>>>>> new-branch-to-fix-bugs
             displayValue = "ERROR";
         } 
 
@@ -243,11 +260,18 @@ function updateUserInput(value) {
             b = Number(b);
     
             displayValue = operate(operator, a, b);
+<<<<<<< HEAD
             console.log(displayValue);   
             }
 
 
         }
+=======
+            console.log(displayValue);
+        }
+
+        
+>>>>>>> new-branch-to-fix-bugs
     }
 
     // Otherwise update input
