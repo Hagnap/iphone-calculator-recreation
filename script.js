@@ -64,7 +64,7 @@ function toggleNegative() {
     }
 
     else if(temp.length == 3 && temp[2] != ''){
-        if(bIsNegative) {
+        if(bIsNegative === true) {
             bIsNegative = false;
 
             displayValue = displayValue === 0 ? '0' : displayValue.slice(1, displayValue.length);
@@ -84,6 +84,8 @@ function toggleNegative() {
 function clear() {
     userInput = '';
     displayValue = '0';
+    aIsNegative = false;
+    bIsNegative = false;
 
     document.querySelector("#output-text").textContent = displayValue;
 }
@@ -183,6 +185,15 @@ function updateUserInput(value) {
         b = Number(expressionSplit[2]);
 
         result = String(operate(operator, a, b));
+        
+        // Update negative flags
+        aIsNegative = operate(operator, a, b) >= 0 ? false : true;
+
+        if(aIsNegative) {
+            result = result.slice(1, result.length);
+        }
+
+        bIsNegative = false;
 
         displayValue = '';
         userInput = result + expressionSplit[3]
