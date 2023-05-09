@@ -38,6 +38,29 @@ function modulus(a,b) {
 }
 
 function toggleNegative() {
+    // Are we making operand a or b negative? Will need to split string to look for operator
+    // If operator exist -> b. Otherwise, a
+
+    var temp = userInput;
+    temp = temp.split(/([%*/+-]+)/g);
+
+    console.table(temp);
+
+    // If one char long then make a negative
+    if(temp.length == 1) {
+        aIsNegative = true;
+
+        displayValue = "-" + displayValue;
+        document.querySelector("#output-text").textContent = displayValue;
+    }
+
+    if(temp.length == 3 && temp[2] != '') {
+        bIsNegative = true;
+
+        displayValue = "-" + displayValue;
+        document.querySelector("#output-text").textContent = displayValue;
+    }
+
 }
 
 function clear() {
@@ -48,6 +71,14 @@ function clear() {
 }
 
 function operate(operator, a, b) {
+
+    if(aIsNegative) {
+        a *= -1;
+    }
+    
+    if(bIsNegative) {
+        b *= -1;
+    }
 
     console.log("In operate()");
     console.log("a: " + a)
@@ -158,7 +189,9 @@ function updateUserInput(value) {
             a = Number(a);
             b = Number(b);
     
-            console.log(operate(operator, a, b));
+            displayValue = operate(operator, a, b);
+            console.log(displayValue);
+            document.querySelector("#output-text").textContent = displayValue;
         }
 
     }
@@ -270,5 +303,7 @@ equalBtn.addEventListener("click", () => {
 
 // Global variable --- Starting dummy value
 let userInput = '';
+let aIsNegative = false;
+let bIsNegative = false;
 let displayValue = '0';
 document.querySelector("#output-text").textContent = displayValue;
