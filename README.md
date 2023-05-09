@@ -15,7 +15,7 @@ The operations a user can perform are
   * Integer Remainder Divison (Modulus)
   
 ## Link
-https://jhagg26.github.io/odin-calculator/index.html (Not showing latest changes)
+https://jhagg26.github.io/odin-calculator/index.html
 
 ## Tech Stack
 * HTML
@@ -33,5 +33,6 @@ https://jhagg26.github.io/odin-calculator/index.html (Not showing latest changes
 * Dealing with multiple decimal places
 
 ## Known Issues
-* Has issues when the second number used is a negative number
-  * ex: 1 - -1 will result in an error
+* Has issues when the toggle-negative (+/-) function is used on an operand
+  * Ideally if the +/- is used after selecting operand the next number inputted would be negative, at the moment it does not do that.
+  * The second operand is only casted to a negative value of itself if the +/- button is pressed when the number is displayed

@@ -63,10 +63,11 @@ function toggleNegative() {
         }
     }
 
-    if(temp.length == 3 && temp[2] != '') {
+    else if(temp.length == 3 && temp[2] != ''){
         if(bIsNegative) {
             bIsNegative = false;
 
+            displayValue = displayValue === 0 ? '0' : displayValue.slice(1, displayValue.length);
             displayValue = displayValue.slice(1, displayValue.length);
             document.querySelector("#output-text").textContent = displayValue;
         }
