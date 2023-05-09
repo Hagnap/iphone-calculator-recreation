@@ -104,12 +104,6 @@ function operate(operator, a, b) {
     console.log("a: " + a)
     console.log("Operator: " + operator)
     console.log("b: " + b)
-
-        /*
-        if(a === "" || a === undefined || b === "" || b === undefined || operator == '' || operator === undefined ) {
-            console.log("ERROR: Undefined Operand(s)");
-        }
-        */
     
     afterAnOperation = true;
     
@@ -153,7 +147,6 @@ function resetButtonColors() {
     subtractBtn.style = "color: white; backgroundColor = rgb(214, 166, 8, 1.0)";
     multiplyBtn.style = "color: white; backgroundColor = rgb(214, 166, 8, 1.0)";
     divideBtn.style = "color: white; backgroundColor = rgb(214, 166, 8, 1.0)";
-    //modulusBtn.style = "backgroundColor = rgb(214, 166, 8, 1.0)";
 }
 
 function checkDecimalCount(value) {
@@ -172,7 +165,6 @@ function updateUserInput(value) {
     var a = '';
     var b = '';
     var operator = '';
-    //var extraOperator = '';
     var result = '';
 
     // Store user input + value if value is not an equal sign
@@ -191,7 +183,6 @@ function updateUserInput(value) {
     // If value is an operator -> Check if another operator is already present. If so perform the calculation, otherwise update userInput
     console.table(expressionSplit);
     if(expressionSplit.length > 3) {
-        //displayValue = "ERROR: Too many operators.";
 
         a = Number(expressionSplit[0]);
         operator = expressionSplit[1];
@@ -216,14 +207,12 @@ function updateUserInput(value) {
     // If input has undefined operands
     else if(((expressionSplit[0] === '' || (expressionSplit[0] != ''  && expressionSplit[2] === '')) && value === '=')) {
         console.log("ERROR: Undefined Operand(s).");
-        //displayValue = "ERROR: Undefined Operand(s).";
         displayValue = "ERROR";
     }
 
     // ExpressionSplit is 1 element -> Only one operand was inputted (no operator + second operand)
    else if(expressionSplit.length === 1 && value === '=') {
         console.log("ERROR: Undefined Operator.");
-        //displayValue = "ERROR: Undefined Operator.";
         displayValue = "ERROR";
     }
     
@@ -239,27 +228,31 @@ function updateUserInput(value) {
         // Check for deciamls (do this while value is a string, easy to traverse)
         if(checkDecimalCount(a) > 1 || checkDecimalCount(b) > 1) {
             console.log("ERROR: Too many decimals in an operand.");
-            //displayValue = "Error: Too many decimals in an operand.";
             displayValue = "ERROR";
         } 
 
         else {
 
+            if(expressionSplit[1].length > 1) {
+                console.log("ERROR: Too many operators");
+                displayValue = "ERROR";
+            }
+            else {
             // Cast a & b to number values 
             a = Number(a);
             b = Number(b);
     
             displayValue = operate(operator, a, b);
-            console.log(displayValue);
-            
+            console.log(displayValue);   
+            }
+
+
         }
-        
-        
     }
 
     // Otherwise update input
     else {
-        
+
         userInput = afterAnOperation ? value : userInput + value;
        
         console.log(userInput);
