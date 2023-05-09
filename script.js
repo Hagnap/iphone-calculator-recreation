@@ -145,10 +145,10 @@ function operate(operator, a, b) {
 
 // INPUT FUNCTIONS
 function resetButtonColors() {
-    addBtn.style = "backgroundColor = rgb(214, 166, 8, 1.0)";
-    subtractBtn.style = "backgroundColor = rgb(214, 166, 8, 1.0)";
-    multiplyBtn.style = "backgroundColor = rgb(214, 166, 8, 1.0)";
-    divideBtn.style = "backgroundColor = rgb(214, 166, 8, 1.0)";
+    addBtn.style = "color: white; backgroundColor = rgb(214, 166, 8, 1.0)";
+    subtractBtn.style = "color: white; backgroundColor = rgb(214, 166, 8, 1.0)";
+    multiplyBtn.style = "color: white; backgroundColor = rgb(214, 166, 8, 1.0)";
+    divideBtn.style = "color: white; backgroundColor = rgb(214, 166, 8, 1.0)";
     //modulusBtn.style = "backgroundColor = rgb(214, 166, 8, 1.0)";
 }
 
@@ -284,28 +284,32 @@ const addBtn = document.querySelector("#add");
 addBtn.addEventListener("click", () => {
     updateUserInput(addBtn.textContent);
     updateDisplayValue(addBtn.textContent);
-    addBtn.style = "background-color: rgba(214, 166, 8, 0.75)";
+    addBtn.style.color = "rgb(214, 166, 8, 1.0)";
+    addBtn.style.backgroundColor = "white";
 });
 
 const subtractBtn = document.querySelector("#subtract");
 subtractBtn.addEventListener("click", () => {
     updateUserInput(subtractBtn.textContent);
     updateDisplayValue(subtractBtn.textContent);
-    subtractBtn.style = "background-color: rgba(214, 166, 8, 0.75)";
+    subtractBtn.style.color = "rgb(214, 166, 8, 1.0)";
+    subtractBtn.style.backgroundColor = "white";
 });
 
 const multiplyBtn = document.querySelector("#multiply");
 multiplyBtn.addEventListener("click", () => {
     updateUserInput('*');
     updateDisplayValue('*');
-    multiplyBtn.style = "background-color: rgba(214, 166, 8, 0.75)";
+    multiplyBtn.style.color = "rgb(214, 166, 8, 1.0)";
+    multiplyBtn.style.backgroundColor = "white";
 });
 
 const divideBtn = document.querySelector("#divide");
 divideBtn.addEventListener("click", () => {
     updateUserInput(divideBtn.textContent);
     updateDisplayValue(divideBtn.textContent);
-    divideBtn.style = "background-color: rgba(214, 166, 8, 0.75)";
+    divideBtn.style.color = "rgb(214, 166, 8, 1.0)";
+    divideBtn.style.backgroundColor = "white";
 });
 
 const modulusBtn = document.querySelector("#modulus");
