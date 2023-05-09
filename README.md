@@ -33,6 +33,10 @@ https://jhagg26.github.io/odin-calculator/index.html
 
 * Dealing with multiple decimal places
 
+* Dealing with multiple negative numbers
+
+* Making the second number negative
+
 ## Known Issues
 * Has issues when the toggle-negative (+/-) function is used on an operand
   * Ideally if the +/- is used after selecting operand the next number inputted would be negative, at the moment it does not do that.
