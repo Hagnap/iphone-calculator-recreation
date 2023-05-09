@@ -82,7 +82,7 @@ function toggleNegative() {
 
 function clear() {
     userInput = '';
-    displayValue = '';
+    displayValue = '0';
 
     document.querySelector("#output-text").textContent = displayValue;
 }
