@@ -53,8 +53,42 @@ function operate(operator, a, b) {
     console.log("a: " + a)
     console.log("Operator: " + operator)
     console.log("b: " + b)
+
+        /*
+        if(a === "" || a === undefined || b === "" || b === undefined || operator == '' || operator === undefined ) {
+            console.log("ERROR: Undefined Operand(s)");
+        }
+        */
     
-    console.log();
+    switch(operator){
+        case "+":
+            return add(a,b);
+            break;
+
+        case "-":
+            return subtract(a,b);
+            break;
+
+        case "*":
+            return multiply(a,b);
+            break;
+
+        case "/":
+
+            if(b === 0) {
+                return "ERROR";
+            }
+            else{
+                return divide(a,b);
+            }
+            
+            break;
+
+        case "%":
+
+            return modulus(a,b);
+            break;
+    }
 
 }
 
@@ -64,7 +98,19 @@ function resetButtonColors() {
     subtractBtn.style = "backgroundColor = rgb(214, 166, 8, 1.0)";
     multiplyBtn.style = "backgroundColor = rgb(214, 166, 8, 1.0)";
     divideBtn.style = "backgroundColor = rgb(214, 166, 8, 1.0)";
-    modulusBtn.style = "backgroundColor = rgb(214, 166, 8, 1.0)";
+    //modulusBtn.style = "backgroundColor = rgb(214, 166, 8, 1.0)";
+}
+
+function checkDecimalCount(value) {
+    var count = 0;
+
+    for(var i = 0; i < value.length; i++) {
+        if(value[i] === '.') {
+            count++;
+        }
+    }   
+
+    return count;
 }
 function updateUserInput(value) {
     
@@ -74,22 +120,47 @@ function updateUserInput(value) {
 
     // Store user input + value if value is not an equal sign
     var temp = value === '=' ? userInput : userInput + value; 
-    var expressionSlit = temp.split(/([%*/+-]+)/g)
+    var expressionSplit = temp.split(/([%*/+-]+)/g)
 
     // If value is an operator -> Check if another operator is already present. If so perform the calculation, otherwise update userInput
-    console.table(expressionSlit);
-    if(expressionSlit.length > 3) {
-        console.log("ERROR: Too many operators");
+    console.table(expressionSplit);
+    if(expressionSplit.length > 3) {
+        console.log("ERROR: Too many operators.");
     }
+
+    
+    else if(((expressionSplit[0] === '' || (expressionSplit[0] != ''  && expressionSplit[2] === '')) && value === '=')) {
+        console.log("ERROR: Undefined Operand(s).");
+    }
+
+    // ExpressionSplit is 1 element -> Only one operand was inputted (no operator + second operand)
+   else if(expressionSplit.length === 1 && value === '=') {
+        console.log("ERROR: Undefined Operator.");
+    }
+    
 
     // If value is an equal sign perform operation
     else if(value === '=') {
 
-        a = expressionSlit[0];
-        operator = expressionSlit[1];
-        b = expressionSlit[2];
+        // Extract operands and operator
+        a = expressionSplit[0];
+        operator = expressionSplit[1];
+        b = expressionSplit[2];
 
-        operate(operator, a, b);
+        // Check for deciamls (do this while value is a string, easy to traverse)
+        if(checkDecimalCount(a) > 1 || checkDecimalCount(b) > 1) {
+            console.log("Error: Too many decimals in an operand.");
+        } 
+
+        else {
+
+            // Cast a & b to number values 
+            a = Number(a);
+            b = Number(b);
+    
+            console.log(operate(operator, a, b));
+        }
+
     }
 
     // Otherwise...
@@ -168,7 +239,7 @@ const modulusBtn = document.querySelector("#modulus");
 modulusBtn.addEventListener("click", () => {
     updateUserInput(modulusBtn.textContent);
     updateDisplayValue(modulusBtn.textContent);
-    modulusBtn.style = "background-color: rgba(214, 166, 8, 0.75)";
+    //modulusBtn.style = "background-color: rgba(214, 166, 8, 0.75)";
 });
 
 const decimalBtn = document.querySelector("#decimal");
@@ -193,7 +264,6 @@ negativeToggleBtn.addEventListener("click", () => {
 const equalBtn = document.querySelector("#equal");
 equalBtn.addEventListener("click", () => {
     
-    console.log(equalBtn.textContent);
     updateUserInput(equalBtn.textContent);
     resetButtonColors();
 });
