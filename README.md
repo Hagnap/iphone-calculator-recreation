@@ -15,7 +15,7 @@ The operations a user can perform are
   * Integer Remainder Divison (Modulus)
   
 ## Link
-https://jhagg26.github.io/odin-calculator/index.html
+https://jhagg26.github.io/odin-calculator/index.html (Not showing latest changes)
 
 ## Tech Stack
 * HTML
