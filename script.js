@@ -104,11 +104,14 @@ function operate(operator, a, b) {
     console.log("a: " + a)
     console.log("Operator: " + operator)
     console.log("b: " + b)
-    
-    afterAnOperation = true;
+
+        /*
+        if(a === "" || a === undefined || b === "" || b === undefined || operator == '' || operator === undefined ) {
+            console.log("ERROR: Undefined Operand(s)");
+        }
+        */
     
     switch(operator){
-        
         case "+":
             return add(a,b);
             break;
@@ -124,7 +127,6 @@ function operate(operator, a, b) {
         case "/":
 
             if(b === 0) {
-                console.log("ERROR: Can't divide by 0.");
                 return "ERROR";
             }
             else{
@@ -147,6 +149,7 @@ function resetButtonColors() {
     subtractBtn.style = "color: white; backgroundColor = rgb(214, 166, 8, 1.0)";
     multiplyBtn.style = "color: white; backgroundColor = rgb(214, 166, 8, 1.0)";
     divideBtn.style = "color: white; backgroundColor = rgb(214, 166, 8, 1.0)";
+    //modulusBtn.style = "backgroundColor = rgb(214, 166, 8, 1.0)";
 }
 
 function checkDecimalCount(value) {
@@ -165,20 +168,12 @@ function updateUserInput(value) {
     var a = '';
     var b = '';
     var operator = '';
+    //var extraOperator = '';
     var result = '';
 
     // Store user input + value if value is not an equal sign
     var temp = value === '=' ? userInput : userInput + value; 
-    var expressionSplit = temp.split(/([%*/+-]+)/g);
-
-    // Check if ERROR is displayed, make it blank (will be overwritten later in this function) & Reset values
-    if(displayValue === "ERROR") {
-        displayValue = '';
-        userInput = '';
-        aIsNegative = false;
-        bIsNegative = false;
-        afterAnOperation = false;
-    }
+    var expressionSplit = temp.split(/([%*/+-]+)/g)
 
         // Check if ERROR is displayed, make it blank (will be overwritten later in this function) & Reset values
         if(displayValue === "ERROR") {
@@ -192,10 +187,7 @@ function updateUserInput(value) {
     // If value is an operator -> Check if another operator is already present. If so perform the calculation, otherwise update userInput
     console.table(expressionSplit);
     if(expressionSplit.length > 3) {
-<<<<<<< HEAD
-=======
         //console.log("ERROR: Too many operators.");
->>>>>>> new-branch-to-fix-bugs
 
         a = Number(expressionSplit[0]);
         operator = expressionSplit[1];
@@ -217,7 +209,6 @@ function updateUserInput(value) {
     }
 
     
-    // If input has undefined operands
     else if(((expressionSplit[0] === '' || (expressionSplit[0] != ''  && expressionSplit[2] === '')) && value === '=')) {
         console.log("ERROR: Undefined Operand(s).");
         displayValue = "ERROR";
@@ -240,45 +231,27 @@ function updateUserInput(value) {
 
         // Check for deciamls (do this while value is a string, easy to traverse)
         if(checkDecimalCount(a) > 1 || checkDecimalCount(b) > 1) {
-<<<<<<< HEAD
-            console.log("ERROR: Too many decimals in an operand.");
-=======
             console.log("Error: Too many decimals in an operand.");
->>>>>>> new-branch-to-fix-bugs
             displayValue = "ERROR";
         } 
 
         else {
 
-            if(expressionSplit[1].length > 1) {
-                console.log("ERROR: Too many operators");
-                displayValue = "ERROR";
-            }
-            else {
             // Cast a & b to number values 
             a = Number(a);
             b = Number(b);
     
             displayValue = operate(operator, a, b);
-<<<<<<< HEAD
-            console.log(displayValue);   
-            }
-
-
-        }
-=======
             console.log(displayValue);
         }
 
         
->>>>>>> new-branch-to-fix-bugs
     }
 
-    // Otherwise update input
+    // Otherwise...
     else {
-
-        userInput = afterAnOperation ? value : userInput + value;
-       
+        // Update input
+        userInput += value;
         console.log(userInput);
     }
 
@@ -295,18 +268,10 @@ function updateDisplayValue(value) {
             displayValue = value;
         }
 
-        // Otherwise concat/add value or overwrite it
+        // Otherwise concat/add value
         else {
-
-            if (afterAnOperation) {
-                displayValue = value;
-                afterAnOperation = false;
-            }
-            else {
             displayValue += value;
-            }
-        }
-        
+        }  
     }
 
     // If an operator is pressed -> Now display a zero
@@ -321,7 +286,6 @@ function updateDisplayValue(value) {
 const numberBtns = document.querySelectorAll(".number");
 numberBtns.forEach((button) => {
     button.addEventListener("click", () => {
-
         updateUserInput(button.textContent);
         updateDisplayValue(button.textContent);
         resetButtonColors();
@@ -397,6 +361,5 @@ equalBtn.addEventListener("click", () => {
 let userInput = '';
 let aIsNegative = false;
 let bIsNegative = false;
-let afterAnOperation = false;
 let displayValue = '0';
 document.querySelector("#output-text").textContent = displayValue;
