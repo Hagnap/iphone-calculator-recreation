@@ -86,6 +86,7 @@ function clear() {
     displayValue = '0';
     aIsNegative = false;
     bIsNegative = false;
+    afterAnOperation = false;
 
     document.querySelector("#output-text").textContent = displayValue;
 }
@@ -110,8 +111,9 @@ function operate(operator, a, b) {
             console.log("ERROR: Undefined Operand(s)");
         }
         */
-    
+
     switch(operator){
+        
         case "+":
             return add(a,b);
             break;
@@ -286,14 +288,57 @@ function updateDisplayValue(value) {
 const numberBtns = document.querySelectorAll(".number");
 numberBtns.forEach((button) => {
     button.addEventListener("click", () => {
+
+        if(afterAnOperation) {
+            console.log("after an operation");
+            displayValue = button.textContent;
+            userInput = displayValue;
+            document.querySelector("#output-text").textContent = displayValue;
+
+            afterAnOperation = false;
+        }
+        else {
+            updateUserInput(button.textContent);
+            updateDisplayValue(button.textContent);
+            resetButtonColors();
+        }
+        /*
+        if(afterAnOperation) {
+            console.log("***");
+
+            console.log(userInput.split(/([%* /+-]+)/g).length);
+            // If user inputs number after an operation and not inputting a value in a sequential operation (would have an operator if so)
+            if(userInput.split(/([%* /+-]+)/g).length === 3) {
+                displayValue = button.textContent;
+                document.querySelector("#output-text").textContent = displayValue;
+                userInput = displayValue; //userInput.charAt(userInput.length);
+                aIsNegative = userInput > 0 ? false : true;
+                bIsNegative = false;
+
+                console.log(displayValue);
+                console.log(userInput);
+                afterAnOperation = false;
+            }
+            
+            
+        }
+        else {
+            updateUserInput(button.textContent);
+            updateDisplayValue(button.textContent);
+        }
+        */
+
+        /*
         updateUserInput(button.textContent);
         updateDisplayValue(button.textContent);
         resetButtonColors();
+        */
     })
 });
 
 const addBtn = document.querySelector("#add");
 addBtn.addEventListener("click", () => {
+    afterAnOperation = false;
     updateUserInput(addBtn.textContent);
     updateDisplayValue(addBtn.textContent);
     addBtn.style.color = "rgb(214, 166, 8, 1.0)";
@@ -302,6 +347,7 @@ addBtn.addEventListener("click", () => {
 
 const subtractBtn = document.querySelector("#subtract");
 subtractBtn.addEventListener("click", () => {
+    afterAnOperation = false;
     updateUserInput(subtractBtn.textContent);
     updateDisplayValue(subtractBtn.textContent);
     subtractBtn.style.color = "rgb(214, 166, 8, 1.0)";
@@ -310,6 +356,7 @@ subtractBtn.addEventListener("click", () => {
 
 const multiplyBtn = document.querySelector("#multiply");
 multiplyBtn.addEventListener("click", () => {
+    afterAnOperation = false;
     updateUserInput('*');
     updateDisplayValue('*');
     multiplyBtn.style.color = "rgb(214, 166, 8, 1.0)";
@@ -318,6 +365,7 @@ multiplyBtn.addEventListener("click", () => {
 
 const divideBtn = document.querySelector("#divide");
 divideBtn.addEventListener("click", () => {
+    afterAnOperation = false;
     updateUserInput(divideBtn.textContent);
     updateDisplayValue(divideBtn.textContent);
     divideBtn.style.color = "rgb(214, 166, 8, 1.0)";
@@ -326,6 +374,7 @@ divideBtn.addEventListener("click", () => {
 
 const modulusBtn = document.querySelector("#modulus");
 modulusBtn.addEventListener("click", () => {
+    afterAnOperation = false;
     updateUserInput(modulusBtn.textContent);
     updateDisplayValue(modulusBtn.textContent);
     //modulusBtn.style = "background-color: rgba(214, 166, 8, 0.75)";
@@ -333,6 +382,7 @@ modulusBtn.addEventListener("click", () => {
 
 const decimalBtn = document.querySelector("#decimal");
 decimalBtn.addEventListener("click", () => {
+    afterAnOperation = false;
     updateUserInput(decimalBtn.textContent);
     updateDisplayValue(decimalBtn.textContent);
     resetButtonColors();
@@ -340,19 +390,21 @@ decimalBtn.addEventListener("click", () => {
 
 const clearBtn = document.querySelector("#clear");
 clearBtn.addEventListener("click", () => {
+    afterAnOperation = false;
     clear();
     resetButtonColors();
 })
 
 const negativeToggleBtn = document.querySelector("#toggle-negative");
 negativeToggleBtn.addEventListener("click", () => {
+    afterAnOperation = false;
     toggleNegative();
     resetButtonColors();
 })
 
 const equalBtn = document.querySelector("#equal");
 equalBtn.addEventListener("click", () => {
-    
+    afterAnOperation = true;
     updateUserInput(equalBtn.textContent);
     resetButtonColors();
 });
@@ -361,5 +413,6 @@ equalBtn.addEventListener("click", () => {
 let userInput = '';
 let aIsNegative = false;
 let bIsNegative = false;
+let afterAnOperation = false;
 let displayValue = '0';
 document.querySelector("#output-text").textContent = displayValue;
