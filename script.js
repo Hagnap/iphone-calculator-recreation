@@ -39,15 +39,41 @@ function modulus(a,b) {
 
 function toggleNegative() {
     // Are we making operand a or b negative? Will need to split string to look for operator
-    // If operator exist -> b. Otherwise, a
+    // Important note: If operator exist -> b. Otherwise, a
 
     var temp = userInput;
     temp = temp.split(/([%*/+-]+)/g);
 
     console.table(temp);
 
+    // If 0 or after an operation -> Replace 0 with negative sign
+    console.log(typeof(displayValue) + " " + displayValue);
+    console.log(afterAnOperation);
+    if(String(displayValue) === '0' || afterAnOperation) {
+        displayValue = '-' + displayValue;
+
+        // Check if a or b
+        if(temp.length == 1) {
+            aIsNegative = true;
+        }
+        else {
+            bIsNegative = true;
+        }
+
+        // If the third to last and second to last values are -0 then remove the zero
+        console.log("-1: " + displayValue[displayValue.length-1]);
+        console.log("-2: " + displayValue[displayValue.length-2]);
+
+        if(displayValue[displayValue.length-2] === "-" && displayValue[displayValue.length-1] === "0") {
+            console.log("*1*")
+            displayValue = displayValue.slice(0,1) + displayValue.slice(2, displayValue.length - 1);
+        }
+
+        document.querySelector("#output-text").textContent = displayValue;
+    }
+
     // If one char long then make a negative
-    if(temp.length == 1) {
+    else if(temp.length == 1) {
 
         if(aIsNegative === true) {
             aIsNegative = false;
@@ -67,6 +93,7 @@ function toggleNegative() {
         if(bIsNegative === true) {
             bIsNegative = false;
 
+            displayValue = String(displayValue); 
             displayValue = displayValue === 0 ? '0' : displayValue.slice(1, displayValue.length);
             displayValue = displayValue.slice(1, displayValue.length);
             document.querySelector("#output-text").textContent = displayValue;
@@ -78,7 +105,11 @@ function toggleNegative() {
             document.querySelector("#output-text").textContent = displayValue;
         }
     }
-
+    else {
+        console.log("Operand A and Operator");
+        console.table(temp);
+    }
+    
 }
 
 function clear() {
@@ -302,37 +333,6 @@ numberBtns.forEach((button) => {
             updateDisplayValue(button.textContent);
             resetButtonColors();
         }
-        /*
-        if(afterAnOperation) {
-            console.log("***");
-
-            console.log(userInput.split(/([%* /+-]+)/g).length);
-            // If user inputs number after an operation and not inputting a value in a sequential operation (would have an operator if so)
-            if(userInput.split(/([%* /+-]+)/g).length === 3) {
-                displayValue = button.textContent;
-                document.querySelector("#output-text").textContent = displayValue;
-                userInput = displayValue; //userInput.charAt(userInput.length);
-                aIsNegative = userInput > 0 ? false : true;
-                bIsNegative = false;
-
-                console.log(displayValue);
-                console.log(userInput);
-                afterAnOperation = false;
-            }
-            
-            
-        }
-        else {
-            updateUserInput(button.textContent);
-            updateDisplayValue(button.textContent);
-        }
-        */
-
-        /*
-        updateUserInput(button.textContent);
-        updateDisplayValue(button.textContent);
-        resetButtonColors();
-        */
     })
 });
 
@@ -397,8 +397,8 @@ clearBtn.addEventListener("click", () => {
 
 const negativeToggleBtn = document.querySelector("#toggle-negative");
 negativeToggleBtn.addEventListener("click", () => {
-    afterAnOperation = false;
     toggleNegative();
+    afterAnOperation = false;
     resetButtonColors();
 })
 
