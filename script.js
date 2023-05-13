@@ -133,9 +133,12 @@ function operate(operator, a, b) {
     }
 
     console.log("In operate()");
-    console.log("a: " + a)
-    console.log("Operator: " + operator)
+    console.log("a: " + a);
+    console.log("aIsNegative: " + aIsNegative);
+    console.log("Operator: " + operator);
     console.log("b: " + b)
+    console.log("bIsNegative: " + bIsNegative);
+
 
         /*
         if(a === "" || a === undefined || b === "" || b === undefined || operator == '' || operator === undefined ) {
@@ -286,6 +289,20 @@ function updateUserInput(value) {
         // Update input
         userInput += value;
         console.log(userInput);
+    }
+
+    // Update negative values
+    if(aIsNegative && bIsNegative) {
+        aIsNegative = false;
+        bIsNegative = false;
+    }
+    else if((aIsNegative == true && bIsNegative == false) || aIsNegative ==  false&& bIsNegative == true) {
+        aIsNegative = true;
+        bIsNegative = false;
+    }
+    else {
+        aIsNegative = false;
+        bIsNegative = false;
     }
 
     document.querySelector("#output-text").textContent = displayValue;

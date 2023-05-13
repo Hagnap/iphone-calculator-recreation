@@ -40,6 +40,5 @@ https://jhagg26.github.io/odin-calculator/index.html
 
 
 ## Known Issue(s)
-* Has issues when the toggle-negative (+/-) function is used on an operand
-  * Ideally if the +/- is used after selecting operand the next number inputted would be negative, at the moment it does not do that.
-  * The second operand is only casted to a negative value of itself if the +/- button is pressed when the number is displayed
+* Has issues when the toggle-negative (+/-) function is used on the second operand
+  * When the toggle-negative (+/-) button is used on the second then the operand will disappear from the screen. 
