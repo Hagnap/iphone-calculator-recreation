@@ -40,5 +40,6 @@ https://jhagg26.github.io/odin-calculator/index.html
 
 
 ## Known Issue(s)
-* Has issues when the toggle-negative (+/-) function is used on the second operand
-  * When the toggle-negative (+/-) button is used on the second then the operand will disappear from the screen. 
+* Has issues when the toggle-negative (+/-) function is used on an operand post operation.
+ * If the result of an operation is "-#" and then the (+/-) function is used the result is "--#"
+ * However, if the (+/-) function is used a third time the result is "#" and then the behavior will continue normally.
