@@ -37,7 +37,9 @@ https://jhagg26.github.io/odin-calculator/index.html
 
 * Making the second number negative
 
-
+## Guide/Reference
+This website was created following the Odin Project.
+You can find the reference [here](https://www.theodinproject.com/lessons/foundations-calculator).
 
 ## Known Issue(s)
 * Has issues when the toggle-negative (+/-) function is used on an operand post operation.
