@@ -1,4 +1,4 @@
-# odin-calculator
+# iphone-calculator
 
 ## Project Description
 This project is a simple re-creation of the calculator app found on iPhones. It is only a recreation of the vertical version of the calculator, not the horizontal version, just wanted to point that out. I chose this calculator to recreate as I found that I lack the creative skills to create a design from scratch but enjoy the challenge of finding something and doing my best to recreate it. This is not a 1:1 recreation. This calculator works with integer and decimal values. However it rounds to the fifth decimal place. 
