@@ -16,7 +16,7 @@ The operations a user can perform are
     * On the iPhone calculator app this operator is actually a percentage operator however I chose to make this a modulus operator due to simplicity.
   
 ## Link
-https://jhagg26.github.io/odin-calculator/index.html
+https://jhagg26.github.io/iphone-calculator-recreation/index.html
 
 ## Tech Stack
 * HTML
