@@ -44,6 +44,6 @@ You can find the reference [here](https://www.theodinproject.com/lessons/foundat
 ## Known Issue(s)
 * Has issues when the toggle-negative (+/-) function is used on an operand post operation.
  
- * If the result of an operation is "-#" and then the (+/-) function is used the result is "--#"
- 
- * However, if the (+/-) function is used a third time the result is "#" and then the behavior will continue normally.
+  * If the result of an operation is "-#" and then the (+/-) function is used the result is "--#"
+
+  * However, if the (+/-) function is used a third time the result is "#" and then the behavior will continue normally.
