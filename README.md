@@ -37,13 +37,8 @@ https://jhagg26.github.io/iphone-calculator-recreation/index.html
 
 * Making the second number negative
 
+* Toggling Negative/Positive values with the `+/-` operation
+
 ## Guide/Reference
 This website was created following the Odin Project.
 You can find the reference [here](https://www.theodinproject.com/lessons/foundations-calculator).
-
-## Known Issue(s)
-* Has issues when the toggle-negative (+/-) function is used on an operand post operation.
- 
-  * If the result of an operation is "-#" and then the (+/-) function is used the result is "--#"
-
-  * However, if the (+/-) function is used a third time the result is "#" and then the behavior will continue normally.
