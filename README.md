@@ -12,7 +12,7 @@ The operations a user can perform are
   
   * Divison
   
-  * Integer Remainder Divison (Modulus)
+  * Integer Divison (Modulus)
     * On the iPhone calculator app this operator is actually a percentage operator however I chose to make this a modulus operator due to simplicity.
   
 ## Link
