@@ -47,9 +47,20 @@ function toggleNegative() {
     console.table(temp);
 
     // If 0 or after an operation -> Replace 0 with negative sign
-    console.log(typeof(displayValue) + " " + displayValue);
-    console.log(afterAnOperation);
-    if(String(displayValue) === '0' || afterAnOperation) {
+    if(afterAnOperation) {
+        console.log("afterAnOperation: " + afterAnOperation);
+        if(displayValue < 0) {
+            displayValue *= -1;
+            afterAnOperation = false;
+            aIsNegative = false;
+            bIsNegative = false;
+
+            userInput = String(displayValue);
+            document.querySelector("#output-text").textContent = displayValue;
+        }
+    }
+    else if(String(displayValue) === '0') {
+        console.log("String(displayValue) === '0': " + String(displayValue) === '0');
         displayValue = '-' + displayValue;
 
         // Check if a or b
@@ -74,6 +85,7 @@ function toggleNegative() {
 
     // If one char long then make a negative
     else if(temp.length == 1) {
+        console.log("temp.length == 1: " + temp.length == 1);
 
         if(aIsNegative === true) {
             aIsNegative = false;
@@ -90,7 +102,9 @@ function toggleNegative() {
     }
 
     else if(temp.length == 3 && temp[2] != ''){
+        console.log("temp.length == 3 && temp[2] != '': " + temp.length == 3 && temp[2] != '');
         if(bIsNegative === true) {
+            console.log("bIsNegative === true: " + bIsNegative === true);
             bIsNegative = false;
 
             displayValue = String(displayValue); 
@@ -99,6 +113,7 @@ function toggleNegative() {
             document.querySelector("#output-text").textContent = displayValue;
         }
         else {
+            console.log("bIsNegative === false: " + bIsNegative === false);
             bIsNegative = true;
 
             displayValue = "-" + displayValue;
@@ -106,6 +121,7 @@ function toggleNegative() {
         }
     }
     else {
+        console.log("ELSE");
         console.log("Operand A and Operator");
         console.table(temp);
     }
