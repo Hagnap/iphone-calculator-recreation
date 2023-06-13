@@ -51,9 +51,14 @@ function toggleNegative() {
         console.log("afterAnOperation: " + afterAnOperation);
         if(displayValue < 0) {
             displayValue *= -1;
-            afterAnOperation = false;
             aIsNegative = false;
-            bIsNegative = false;
+
+            userInput = String(displayValue);
+            document.querySelector("#output-text").textContent = displayValue;
+        }
+        else {
+            displayValue *= -1;
+            aIsNegative = true;
 
             userInput = String(displayValue);
             document.querySelector("#output-text").textContent = displayValue;
@@ -154,13 +159,6 @@ function operate(operator, a, b) {
     console.log("Operator: " + operator);
     console.log("b: " + b)
     console.log("bIsNegative: " + bIsNegative);
-
-
-        /*
-        if(a === "" || a === undefined || b === "" || b === undefined || operator == '' || operator === undefined ) {
-            console.log("ERROR: Undefined Operand(s)");
-        }
-        */
 
     switch(operator){
         
@@ -296,8 +294,6 @@ function updateUserInput(value) {
             displayValue = operate(operator, a, b);
             console.log(displayValue);
         }
-
-        
     }
 
     // Otherwise...
